@@ -34,4 +34,11 @@ export class StudentService {
     localStorage.setItem('students', JSON.stringify(currentStudents)); // Save updated students list
     this.studentsSignal.set(currentStudents); // Update the Signal with the new list of students
   }
+
+  updateStudent(updatedStudent: any, index: number) {
+    const currentStudents = this.getStudentsFromLocalStorage();
+    currentStudents[index] = updatedStudent;
+    localStorage.setItem('students', JSON.stringify(currentStudents));
+    this.studentsSignal.set(currentStudents);
+  }
 }
