@@ -1,0 +1,11 @@
+.student-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-full-width {
+    width: 100%;
+}

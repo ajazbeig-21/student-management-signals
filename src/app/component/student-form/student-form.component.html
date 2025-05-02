@@ -1,1 +1,53 @@
-<p>student-form works!</p>
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="student-form">
+    <mat-form-field class="form-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="studentForm.get('name')?.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dob" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="studentForm.get('dob')?.hasError('required')">Date of birth is required</mat-error>
+    </mat-form-field>
+  
+    <label>Gender</label>
+    <mat-radio-group formControlName="gender" class="gender-group">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+      <mat-radio-button value="Other">Other</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="studentForm.get('gender')?.hasError('required')">Gender is required</mat-error>
+  
+    <mat-form-field class="form-full-width">
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address"></textarea>
+      <mat-error *ngIf="studentForm.get('address')?.hasError('required')">Address is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="studentForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="studentForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form-full-width">
+      <mat-label>Mobile Number</mat-label>
+      <input matInput formControlName="mobile" />
+      <mat-error *ngIf="studentForm.get('mobile')?.hasError('required')">Mobile number is required</mat-error>
+      <mat-error *ngIf="studentForm.get('mobile')?.hasError('pattern')">Enter a valid 10-digit mobile number</mat-error>
+    </mat-form-field>
+  
+    <mat-checkbox formControlName="terms">
+      I agree to the Terms and Conditions
+    </mat-checkbox>
+    <mat-error *ngIf="studentForm.get('terms')?.hasError('required')">
+      You must accept terms
+    </mat-error>
+  
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+  
