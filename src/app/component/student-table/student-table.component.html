@@ -1,1 +1,37 @@
-<p>student-table works!</p>
+<!-- student-display.component.html -->
+<div *ngIf="students.length > 0; else noStudents">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students; let i = index">
+          <td>{{ student.name }}</td>
+          <td>{{ student.dob | date }}</td>
+          <td>{{ student.gender }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.mobile }}</td>
+          <td>
+            <div style="display: flex; gap: 10px; cursor: pointer;">
+              <div (click)="deleteStudent(i)">Delete</div>
+              <div>Edit</div> <!-- You can implement the Edit functionality later -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #noStudents>
+    <p>No students found.</p>
+  </ng-template>
+  
