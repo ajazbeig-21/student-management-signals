@@ -37,7 +37,42 @@ After cloning this repo we just need to head over to the project directory and f
   npm install 
   ng serve -o // this will open web app on port 4200
 ```
-    
+# Student Management System
+
+This is a **Student Management System** built using **Angular** and **Angular Material**. The application allows you to manage student data with features like adding, editing, and deleting student records. It uses **Signals** for state management and **localStorage** for persistent data storage.
+
+## Features:
+- **Add Student**: A form to input student data (name, dob, gender, address, email, mobile).
+- **View Students**: A table displays all the students' information.
+- **Edit Student**: Open an Angular Material dialog to edit student data.
+- **Delete Student**: Remove a student record from the list.
+- **State Management**: Uses Angular **Signals** for efficient and reactive data handling.
+- **Data Persistence**: Student data is stored in **localStorage**, ensuring data is retained even after page refreshes.
+
+## How It Works:
+
+1. **Student Form**:  
+   - Users can add new student records by entering details into a form (name, DOB, gender, address, email, and mobile).
+   - The form uses **Angular Material** for styling and user interaction.
+   
+2. **Student Table**:  
+   - Once students are added, they are displayed in a **Material Table**.
+   - The table shows the student name, date of birth, gender, address, email, and mobile number.
+   
+3. **Edit Student**:  
+   - Each student has an "Edit" button. When clicked, an **Angular Material Dialog** opens, pre-filled with the student's current data.
+   - Users can update the data and save it back.
+
+4. **Delete Student**:  
+   - Each student row has a "Delete" button. When clicked, the student is removed from the list.
+
+5. **State Management**:  
+   - The app uses **Signals** for state management, allowing efficient updates to the list of students when they are added, edited, or deleted.
+
+6. **Data Persistence**:  
+   - All student data is saved in **localStorage**, so it persists even if the page is refreshed or the app is closed and reopened.
+
+
 ## Authors
 
 - [@ajazbeig](https://github.com/ajazbeig-21)
