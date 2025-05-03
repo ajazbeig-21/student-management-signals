@@ -1,42 +1,53 @@
 <h2 mat-dialog-title>Edit Student</h2>
 <mat-dialog-content>
-  <form>
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="data.name" name="name" required />
-    </mat-form-field>
+    <form #studentForm="ngForm">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="data.name" name="name" required #name="ngModel" />
+            <mat-error *ngIf="name.invalid && name.touched">Name is required</mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>DOB</mat-label>
-      <input matInput [(ngModel)]="data.dob" name="dob" type="date" required />
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="data.dob" name="dob" required #dob="ngModel" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="dob.invalid && dob.touched">Date of birth is required</mat-error>
+          </mat-form-field>
+          
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Gender</mat-label>
+            <mat-select [(ngModel)]="data.gender" name="gender" required #gender="ngModel">
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+            </mat-select>
+            <mat-error *ngIf="gender.invalid && gender.touched">Gender is required</mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Gender</mat-label>
-      <mat-select [(ngModel)]="data.gender" name="gender" required>
-        <mat-option value="Male">Male</mat-option>
-        <mat-option value="Female">Female</mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Address</mat-label>
+            <input matInput [(ngModel)]="data.address" name="address" required #address="ngModel" />
+            <mat-error *ngIf="address.invalid && address.touched">Address is required</mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Address</mat-label>
-      <input matInput [(ngModel)]="data.address" name="address" required />
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="data.email" name="email" type="email" required #email="ngModel" />
+            <mat-error *ngIf="email.invalid && email.touched">A valid email is required</mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="data.email" name="email" type="email" required />
-    </mat-form-field>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Mobile</mat-label>
+            <input matInput [(ngModel)]="data.mobile" name="mobile" type="tel" required [pattern]="mobilePattern"
+                #mobile="ngModel" />
+            <mat-error *ngIf="mobile.invalid && mobile.touched">Mobile number must be a valid 10-digit
+                number</mat-error>
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Mobile</mat-label>
-      <input matInput [(ngModel)]="data.mobile" name="mobile" type="tel" required />
-    </mat-form-field>
-
-  </form>
+    </form>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button color="primary" (click)="onSaveClick()">Save</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="onSaveClick()" [disabled]="studentForm.invalid">Save</button>
 </mat-dialog-actions>

@@ -8,16 +8,27 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   standalone: false
 })
 export class StudentEditDialogComponent {
+
+  mobilePattern = '^[0-9]{10}$';
+
   constructor(
     public dialogRef: MatDialogRef<StudentEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any  // This will hold the student data to edit
+    @Inject(MAT_DIALOG_DATA) public data: any  
   ) {}
 
   onNoClick(): void {
-    this.dialogRef.close(); // Close the dialog without saving changes
+    this.dialogRef.close(); 
   }
 
   onSaveClick(): void {
-    this.dialogRef.close(this.data); // Close the dialog and return updated student data
+    this.dialogRef.close(this.data); 
+  }
+
+  get formattedDob(): string {
+    return this.data.dob ? this.data.dob.split('T')[0] : '';  
+  }
+
+  set formattedDob(value: string) {
+    this.data.dob = value ? new Date(value).toISOString() : '';  
   }
 }

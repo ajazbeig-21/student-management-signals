@@ -10,39 +10,36 @@ import { StudentEditDialogComponent } from '../student-edit-dialog/student-edit-
   styleUrl: './student-table.component.css'
 })
 export class StudentTableComponent {
-  studentsSignal: Signal<any[]>;  // Signal to hold student data
-  displayedColumns: string[] = ['name', 'dob', 'gender', 'address', 'email', 'mobile', 'action'];  // Define columns to display
+  studentsSignal: Signal<any[]>;  
+  displayedColumns: string[] = ['name', 'dob', 'gender', 'address', 'email', 'mobile', 'action']; 
 
   constructor(private studentService: StudentService, public dialog: MatDialog) {
-    // Access the Signal from the StudentService
     this.studentsSignal = studentService.getStudentsSignal();
   }
 
-  // Get the students directly from the Signal
   get students() {
     return this.studentsSignal();
   }
 
   deleteStudent(index: number) {
-    this.studentService.deleteStudent(index);  // Call the delete method in the service
+    this.studentService.deleteStudent(index);  
   }
 
 
-  // Open the edit dialog
   openEditDialog(student: any, index: number): void {
     const dialogRef = this.dialog.open(StudentEditDialogComponent, {
       width: '400px',
-      data: { ...student }  // Pass the student data to the dialog
+      data: { ...student }  
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.updateStudent(result, index);  // Update student if result is returned
+        this.updateStudent(result, index);  
       }
     });
   }
 
   updateStudent(updatedStudent: any, index: number) {
-    this.studentService.updateStudent(updatedStudent, index);  // Update student in the service
+    this.studentService.updateStudent(updatedStudent, index);  
   }
 }
